@@ -40,23 +40,16 @@ min 20Gb dinamic VDI
 
 `git clone -b 3.6 https://github.com/zeroc-ice/ice.git`
 
-`cd ice/config`
+`cd ice`
 
-In Make.rules or Make.common.rules add **STATICLIBS = yes**
+`sed -ri "s/MACHINE_TYPE/STATICLIBS = yes\n\n\0/" config/Make.common.rules`
 
-`cd ../cpp/config`
+`sed -ri "s/-Werror/-Wno-error/" cpp/config/Make.rules.Linux`
 
-In config/Make.rules.linux replace -Werror  to -Wno-error 
+`sed -ri "s/-lIceUtil/\0 -lbz2 -lmcpp -lcrypto/" cpp/config/Make.rules.Linux`
 
-`sed -ri "s/-lIceUtil/\1 -lbz2 -lmcpp -lcrypto/" Make.rules.Linux`
+`sed -ri "s/__GNUC__\)/\0 \&\& defined(__GLIBC__)/" cpp/src/IceUtilException.cpp`
 
-`cd ../include`
-
-Edit IceUtil/Exception.cpp:34:24
-
-`--- #if defined(__GNUC__) && !defined(__sun) && !defined(__FreeBSD__) && !defined(__MINGW32__) && \`
-
-`+++ #if defined(__GNUC__) && defined(__GLIBC__) && !defined(__sun) && !defined(__FreeBSD__) && !defined(__MINGW32__) && \`
 
 In IceUtil/RecMutex.cpp & IceUtil/Mutex.h add **&& defined(PTHREAD_MUTEX_ERRORCHECK_NP)** 
 
