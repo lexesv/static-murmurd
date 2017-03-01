@@ -1,6 +1,6 @@
 **1. INSTALL VIRTUALBOX 5**
 
-min 20Gb dinamic VDI
+Need minimum 10Gb dinamic VDI
 
 **2. INSTALL ALPINE LINUX**
 
