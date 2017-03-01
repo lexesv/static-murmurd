@@ -7,12 +7,16 @@
 # http://mirror.leaseweb.com/alpine/edge/community
 # http://mirror.leaseweb.com/alpine/edge/testing
 
-apk update && apk upgrade
+#CPUN=`cat /proc/cpuinfo | grep processor | wc -l`
 
-CPUN=`cat /proc/cpuinfo | grep processor | wc -l`
+apk update && apk upgrade
 
 mkdir /build
 
 ./qt.sh
 
 ./ice.sh
+
+./glib.sh
+
+./dbus.sh
