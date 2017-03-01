@@ -103,7 +103,7 @@ And when compiling Mumble, the QT need this library :=).
 `make -j4 && make install`
 
 
-**7. MUMBLE**
+**7. MUMBLE (MURMURD)**
 
 `cd /build`
 
