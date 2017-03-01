@@ -20,7 +20,7 @@ Edit file /etc/apk/repositories
 
 > http://mirror.leaseweb.com/alpine/edge/testing
 
-`apk update && apk upgrade
+`apk update && apk upgrade`
 
 **3. QT5**
 
