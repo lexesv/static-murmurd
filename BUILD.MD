@@ -9,7 +9,7 @@ min 20Gb dinamic VDI
 
 **3. QT5**
 
-[CPU-N] - `cat /proc/cpuinfo | grep processor | wc -l`
+``CPUN=`cat /proc/cpuinfo | grep processor | wc -l```
 
 `mkdir /build && cd /build`
 
@@ -27,7 +27,7 @@ min 20Gb dinamic VDI
 
 `./configure -prefix /opt/qt -opensource -confirm-license -static -openssl-linked -nomake examples -no-icu -no-gui -no-widgets -no-cups -no-opengl -no-sql-odbc -no-sql-odbc -no-sql-mysql -no-sql-psql -no-sql-tds -qt-sql-sqlite`
 
-`make -j[CPU-N]`
+`make -j$CPUN`
 
 `make install`
 
@@ -51,11 +51,11 @@ min 20Gb dinamic VDI
 `sed -ri "s/__GNUC__\)/\0 \&\& defined(__GLIBC__)/" cpp/src/IceUtilException.cpp`
 
 
-In IceUtil/RecMutex.cpp & IceUtil/Mutex.h add **&& defined(PTHREAD_MUTEX_ERRORCHECK_NP)** 
+In src/IceUtil/RecMutex.cpp & include/IceUtil/Mutex.h add **&& defined(PTHREAD_MUTEX_ERRORCHECK_NP)** 
 
 `cd /build/ice && mv test test.off`
 
-`make -j[CPU-N]`
+`make -j$CPUN`
 
 `make install`
 
@@ -69,7 +69,7 @@ In IceUtil/RecMutex.cpp & IceUtil/Mutex.h add **&& defined(PTHREAD_MUTEX_ERRORCH
 
 `./autogen.sh && ./configure --enable-static --prefix=/opt/glib`
 
-`make -j[CPU-N] && make install`
+`make -j$CPUN && make install`
 
 **6. DBUS**
 
@@ -81,7 +81,7 @@ In IceUtil/RecMutex.cpp & IceUtil/Mutex.h add **&& defined(PTHREAD_MUTEX_ERRORCH
 
 `./autogen.sh && ./configure --enable-static --prefix=/opt/dbus`
 
-`make -j[CPU-N] && make install`
+`make -j$CPUN && make install`
 
 
 **7. MUMBLE**
@@ -122,4 +122,4 @@ Replace in murmur_ice.pro path to Ice /opt/Ice-3.3 to /opt/3.6.x
 
 `/opt/qt/bin/qmake -recursive main.pro QMAKE_LFLAGS+="-L/opt/dbus/lib -L/opt/glib/lib" CONFIG+="static no-bonjour no-client"`
 
-`make -j[CPU-N] release`
+`make -j$CPUN release`
