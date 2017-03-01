@@ -90,9 +90,9 @@ In src/IceUtil/RecMutex.cpp & include/IceUtil/Mutex.h add **&& defined(PTHREAD_M
 
 `git clone https://github.com/mumble-voip/mumble.git`
 
-`cd mumble/src`
+`cd mumble`
 
-Edit file (mc F4) SSL.cpp (function **void MumbleSSL::qsslSanityCheck()**) comment lines: 
+Edit file (mc F4) src/SSL.cpp (function **void MumbleSSL::qsslSanityCheck()**) comment lines: 
 
 //	qFatal("SSL: could not dlopen program binary");
 
@@ -108,17 +108,9 @@ Edit file (mc F4) SSL.cpp (function **void MumbleSSL::qsslSanityCheck()**) comme
 
 //	ok = false;
 
-`cd murmur`
+`sed -ri "s%opt/Ice-3.3%opt/3.6.3%g" src/murmur/murmur.pro`
 
-Replace in murmur.pro  path to Ice /opt/Ice-3.3 to /opt/3.6.x
-
-`sed -ri "s%opt/Ice-3.3%opt/3.6.3%g" murmur.pro`
-
-cd `murmur_ice`
-
-Replace in murmur_ice.pro path to Ice /opt/Ice-3.3 to /opt/3.6.x
-
-`sed -ri "s%opt/Ice-3.3%opt/3.6.3%g" murmur_ice.pro`
+`sed -ri "s%opt/Ice-3.3%opt/3.6.3%g" src/murmur/murmur_ice/murmur_ice.pro`
 
 `/opt/qt/bin/qmake -recursive main.pro QMAKE_LFLAGS+="-L/opt/dbus/lib -L/opt/glib/lib" CONFIG+="static no-bonjour no-client"`
 
