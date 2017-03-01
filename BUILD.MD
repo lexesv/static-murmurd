@@ -1,8 +1,8 @@
-**1. INSTALL VIRTUALBOX 5**
+**1. VIRTUALBOX 5**
 
 Need minimum 10Gb dinamic VDI
 
-**2. INSTALL ALPINE LINUX**
+**2. ALPINE LINUX**
 
 [Download] (https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-extended-3.5.1-x86_64.iso)
 
