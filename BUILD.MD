@@ -4,7 +4,7 @@ min 20Gb dinamic VDI
 
 **2. INSTALL ALPINE LINUX**
 
-[Download](https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-extended-3.5.1-x86_64.iso)
+[Download] (https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-extended-3.5.1-x86_64.iso)
 
 
 **3. QT5**
@@ -13,7 +13,7 @@ min 20Gb dinamic VDI
 
 `mkdir /build && cd /build`
 
-`apk add mc mesa-dev libice-dev libsm-dev libx11-dev libxext-dev libressl-dev fontconfig-dev freetype-dev glib-dev libpng-dev zlib-dev sqlite-dev dbus-dev perl bison cups-dev eudev-dev  flex freetds-dev gawk gperf gtk+2.0-dev hicolor-icon-theme icu-dev libjpeg-turbo-dev libxkbcommon-dev libxi-dev libxrandr-dev libxrender-dev libxslt-dev libxv-dev mariadb-dev pcre-dev postgresql-dev unixodbc-dev xcb-util-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-wm-dev 7zip speex-dev speexdsp-dev libcap-dev protobuf-dev libsndfile-dev boost-dev avahi-dev`
+`apk add mc mesa-dev libice-dev libsm-dev libx11-dev libxext-dev libressl-dev fontconfig-dev freetype-dev glib-dev libpng-dev zlib-dev sqlite-dev dbus-dev perl bison cups-dev eudev-dev  flex freetds-dev gawk gperf gtk+2.0-dev hicolor-icon-theme icu-dev libjpeg-turbo-dev libxkbcommon-dev libxi-dev libxrandr-dev libxrender-dev libxslt-dev libxv-dev mariadb-dev pcre-dev postgresql-dev unixodbc-dev xcb-util-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-wm-dev 7zip xz speex-dev speexdsp-dev libcap-dev protobuf-dev libsndfile-dev boost-dev avahi-dev`
 
 `wget http://download.qt.io/official_releases/qt/5.6/5.6.1/submodules/qtbase-opensource-src-5.6.1.7z`
 
@@ -67,6 +67,16 @@ In IceUtil/RecMutex.cpp & IceUtil/Mutex.h add **&& defined(PTHREAD_MUTEX_ERRORCH
 `make install`
 
 **5. GLIB**
+
+`cd /build`
+
+`wget https://ftp.gnome.org/pub/gnome/sources/glib/2.50/glib-2.50.3.tar.xz`
+
+`xz -d glib-2.50.3.tar.xz && cd glib-2.50.3`
+
+`./configure --enable-static --prefix=/opt/glib`
+
+`make -j[CPU-N] && make install`
 
 **6. DBUS**
 
