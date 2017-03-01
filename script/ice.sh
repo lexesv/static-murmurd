@@ -1,12 +1,8 @@
 #!/bin/bash
 
-apk add mcpp-libs mcpp mcpp-dev bzip2 bzip2-libs
-
 cd /build
 
-wget https://github.com/zeroc-ice/ice/archive/v3.6.3.tar.gz  && tar xf v3.6.3.tar.gz
-
-cd ice-3.6.3
+wget https://github.com/zeroc-ice/ice/archive/v3.6.3.tar.gz  && tar xf v3.6.3.tar.gz && cd ice-3.6.3
 
 sed -ri "s/^MACHINE_TYPE/STATICLIBS = yes\n\n\0/" config/Make.common.rules
 
@@ -26,6 +22,6 @@ patch -p0 < cpp/icessl.patch
 
 mv cpp/test cpp/test.off
 
-cd cpp && make -j$CPUN
+cd cpp && make -j4
 
 make install
