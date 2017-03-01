@@ -74,11 +74,21 @@ In IceUtil/RecMutex.cpp & IceUtil/Mutex.h add **&& defined(PTHREAD_MUTEX_ERRORCH
 
 `xz -d glib-2.50.3.tar.xz && cd glib-2.50.3`
 
-`./configure --enable-static --prefix=/opt/glib`
+`./autogen.sh && ./configure --enable-static --prefix=/opt/glib`
 
 `make -j[CPU-N] && make install`
 
 **6. DBUS**
+
+`cd /build`
+
+`wget https://dbus.freedesktop.org/releases/dbus/dbus-1.10.16.tar.gz`
+
+`tar xf dbus-1.10.16.tar.gz && cd dbus-1.10.16`
+
+`./autogen.sh && ./configure --enable-static --prefix=/opt/dbus`
+
+`make -j[CPU-N] && make install`
 
 
 **7. MUMBLE**
@@ -117,6 +127,6 @@ Replace in murmur_ice.pro path to Ice /opt/Ice-3.3 to /opt/3.6.x
 
 `sed -ri "s%opt/Ice-3.3%opt/3.6.3%g" murmur_ice.pro`
 
-`/opt/qt/bin/qmake -recursive main.pro QMAKE_LFLAGS+="-L/opt/dbus/lib -L/opt/glib/lib" CONFIG+="static no-bonjour no-dbus no-client"`
+`/opt/qt/bin/qmake -recursive main.pro QMAKE_LFLAGS+="-L/opt/dbus/lib -L/opt/glib/lib" CONFIG+="static no-bonjour no-client"`
 
 `make -j[CPU-N] release`
