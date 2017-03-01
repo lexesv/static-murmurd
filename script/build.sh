@@ -8,7 +8,7 @@
 # http://mirror.leaseweb.com/alpine/edge/testing
 
 #CPUN=`cat /proc/cpuinfo | grep processor | wc -l`
-
+SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 apk update && apk upgrade
 
 apk add build-base autoconf make grep mc sed git libzip-dev libxml2-dev libxml2-utils zlib-dev bzip2-dev mcpp-libs mcpp mcpp-dev bzip2 lbzip2 \
@@ -19,13 +19,13 @@ xcb-util-keysyms-dev xcb-util-wm-dev tar 7zip xz speex-dev speexdsp-dev libcap-d
 
 mkdir /build
 
-./qt.sh
+$SCRIPT_PATH/qt.sh
 
-./ice.sh
+$SCRIPT_PATH/ice.sh
 
-./glib.sh
+$SCRIPT_PATH/glib.sh
 
-./dbus.sh
+$SCRIPT_PATH/dbus.sh
 
-./murmurd.sh
+$SCRIPT_PATH/murmurd.sh
 
