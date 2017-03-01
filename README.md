@@ -10,6 +10,12 @@ See [Build](https://github.com/lexesv/staticmurmurd/blob/master/BUILD.MD)
 - Create auto-build shell script
 - Build 32-bit version
 
-Mumble VoIP Client/Server: https://www.mumble.info
+**LINKS**
+
+- Mumble VoIP Client/Server: https://www.mumble.info
+
+- Musl libc: https://www.musl-libc.org/
+
+- Alpine Linux: https://alpinelinux.org/
 
 
