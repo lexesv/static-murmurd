@@ -3,7 +3,7 @@ Build of statically linked Murmurd (Mumble)
 
 See [Build](https://github.com/lexesv/static-murmurd/blob/master/BUILD.MD)
 
-![statically linked Murmurd](https://raw.githubusercontent.com/lexesv/static-murmurd/master/files/scr1.png)
+![statically linked Murmurd](https://github.com/lexesv/static-murmurd/blob/master/files/screensh.png?raw=true)
 
 **TODO**
 
