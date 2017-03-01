@@ -1,1 +1,1 @@
-# Built binaries
+# Built static murmurd
