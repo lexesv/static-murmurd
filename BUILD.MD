@@ -90,8 +90,7 @@ Edit file /etc/apk/repositories
 **6. DBUS**
 
 Dbus needed because I was not able to build a QT without it.
-
-And when compiling Mumble QT drags this library :=).
+And when compiling Mumble QT need this library :=).
 
 `cd /build`
 
