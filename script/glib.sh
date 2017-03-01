@@ -8,4 +8,4 @@ xz -d glib-2.50.3.tar.xz && cd glib-2.50.3
 
 ./autogen.sh && ./configure --enable-static --prefix=/opt/glib
 
-make -j$CPUN && make install
+make -j4 && make install
