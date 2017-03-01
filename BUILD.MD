@@ -53,25 +53,29 @@ Edit file /etc/apk/repositories
 
 `cd /build`
 
-`git clone -b 3.6 https://github.com/zeroc-ice/ice.git`
+`wget https://github.com/zeroc-ice/ice/archive/v3.6.3.tar.gz  && tar xf v3.6.3.tar.gz`
 
-`cd ice`
+`cd ice-3.6.3`
 
-`sed -ri "s/MACHINE_TYPE/STATICLIBS = yes\n\n\0/" config/Make.common.rules`
+`sed -ri "s/^MACHINE_TYPE/STATICLIBS = yes\n\n\0/" config/Make.common.rules`
 
 `sed -ri "s/-Werror/-Wno-error/" cpp/config/Make.rules.Linux`
 
 `sed -ri "s/-lIceUtil/\0 -lbz2 -lmcpp -lcrypto/" cpp/config/Make.rules.Linux`
 
-`sed -ri "s/__GNUC__\)/\0 \&\& defined(__GLIBC__)/" cpp/src/IceUtilException.cpp`
+`sed -ri "s/__GNUC__\)/\0 \&\& defined(__GLIBC__)/" cpp/src/IceUtil/Exception.cpp`
 
 `sed -ri "s/defined\(__linux\) \&\& \!defined\(__USE_UNIX98\)/\0 \&\& defined(PTHREAD_MUTEX_ERRORCHECK_NP)/" cpp/src/IceUtil/RecMutex.cpp`
 
 `sed -ri "s/defined\(__linux\) \&\& \!defined\(__USE_UNIX98\)/\0 \&\& defined(PTHREAD_MUTEX_ERRORCHECK_NP)/" cpp/include/IceUtil/Mutex.h`
 
-`mv test test.off`
+`wget https://raw.githubusercontent.com/lexesv/static-murmurd/master/files/icessl.patch -O cpp/icessl.patch`
 
-`make -j$CPUN`
+`patch -p0 < cpp/icessl.patch`
+
+`mv cpp/test cpp/test.off`
+
+`cd cpp && make -j$CPUN`
 
 `make install`
 
@@ -118,6 +122,6 @@ Edit file /etc/apk/repositories
 
 `sed -ri "s%opt/Ice-3.3%opt/3.6.3%g" src/murmur/murmur_ice/murmur_ice.pro`
 
-`/opt/qt/bin/qmake -recursive main.pro QMAKE_LFLAGS+="-L/opt/dbus/lib -L/opt/glib/lib" CONFIG+="static no-bonjour no-client"`
+`/opt/qt/bin/qmake -recursive main.pro QMAKE_LFLAGS+="-L/opt/dbus/lib -L/opt/glib/lib" CONFIG+="static no-bonjour no-dbus no-client"`
 
 `make -j$CPUN release`
