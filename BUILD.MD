@@ -22,15 +22,13 @@ Edit file /etc/apk/repositories
 
 `apk update && apk upgrade`
 
-``CPUN=`cat /proc/cpuinfo | grep processor | wc -l```
+`apk add build-base autoconf make grep mc sed git libzip-dev libxml2-dev libxml2-utils zlib-dev bzip2-dev mcpp-libs mcpp mcpp-dev bzip2 lbzip2 mesa-dev libice-dev libsm-dev libx11-dev libxext-dev libressl-dev fontconfig-dev freetype-dev glib-dev libpng-dev zlib-dev sqlite-dev dbus-dev perl bison cups-dev eudev-dev flex freetds-dev gawk gperf gtk+2.0-dev hicolor-icon-theme icu-dev libjpeg-turbo-dev libxkbcommon-dev libxi-dev libxrandr-dev libxrender-dev libxslt-dev libxv-dev mariadb-dev pcre-dev postgresql-dev unixodbc-dev xcb-util-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-wm-dev tar 7zip xz speex-dev speexdsp-dev libcap-dev protobuf-dev libsndfile-dev boost-dev avahi-dev`
 
 `mkdir /build`
 
 **3. QT5**
 
 `cd /build`
-
-`apk add mc mesa-dev libice-dev libsm-dev libx11-dev libxext-dev libressl-dev fontconfig-dev freetype-dev glib-dev libpng-dev zlib-dev sqlite-dev dbus-dev perl bison cups-dev eudev-dev  flex freetds-dev gawk gperf gtk+2.0-dev hicolor-icon-theme icu-dev libjpeg-turbo-dev libxkbcommon-dev libxi-dev libxrandr-dev libxrender-dev libxslt-dev libxv-dev mariadb-dev pcre-dev postgresql-dev unixodbc-dev xcb-util-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-wm-dev 7zip xz speex-dev speexdsp-dev libcap-dev protobuf-dev libsndfile-dev boost-dev avahi-dev`
 
 `wget http://download.qt.io/official_releases/qt/5.6/5.6.1/submodules/qtbase-opensource-src-5.6.1.7z`
 
@@ -44,20 +42,16 @@ Edit file /etc/apk/repositories
 
 `./configure -prefix /opt/qt -opensource -confirm-license -static -openssl-linked -nomake examples -no-icu -no-gui -no-widgets -no-cups -no-opengl -no-sql-odbc -no-sql-odbc -no-sql-mysql -no-sql-psql -no-sql-tds -qt-sql-sqlite`
 
-`make -j$CPUN`
+`make -j4`
 
 `make install`
 
 
 **4. ZEROC-ICE**
 
-`apk add mcpp-libs mcpp mcpp-dev bzip2 bzip2-libs`
-
 `cd /build`
 
-`wget https://github.com/zeroc-ice/ice/archive/v3.6.3.tar.gz  && tar xf v3.6.3.tar.gz`
-
-`cd ice-3.6.3`
+`wget https://github.com/zeroc-ice/ice/archive/v3.6.3.tar.gz  && tar xf v3.6.3.tar.gz && cd ice-3.6.3`
 
 `sed -ri "s/^MACHINE_TYPE/STATICLIBS = yes\n\n\0/" config/Make.common.rules`
 
@@ -77,7 +71,7 @@ Edit file /etc/apk/repositories
 
 `mv cpp/test cpp/test.off`
 
-`cd cpp && make -j$CPUN`
+`cd cpp && make -j4`
 
 `make install`
 
@@ -91,7 +85,7 @@ Edit file /etc/apk/repositories
 
 `./autogen.sh && ./configure --enable-static --prefix=/opt/glib`
 
-`make -j$CPUN && make install`
+`make -j4 && make install`
 
 **6. DBUS**
 
@@ -103,7 +97,7 @@ Edit file /etc/apk/repositories
 
 `./autogen.sh && ./configure --enable-static --prefix=/opt/dbus`
 
-`make -j$CPUN && make install`
+`make -j4 && make install`
 
 
 **7. MUMBLE**
@@ -126,4 +120,4 @@ Edit file /etc/apk/repositories
 
 `/opt/qt/bin/qmake -recursive main.pro QMAKE_LFLAGS+="-L/opt/dbus/lib -L/opt/glib/lib" CONFIG+="static no-bonjour no-dbus no-client"`
 
-`make -j$CPUN release`
+`make -j4 release`
