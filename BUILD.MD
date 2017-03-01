@@ -4,7 +4,7 @@ min 20Gb dinamic VDI
 
 **2. INSTALL ALPINE LINUX**
 
-[https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-extended-3.5.1-x86_64.iso]()
+[Download](https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-extended-3.5.1-x86_64.iso)
 
 
 **3. QT5**
