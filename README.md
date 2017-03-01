@@ -1,4 +1,4 @@
-# staticmurmurd
+# static-murmurd
 Build of statically linked Murmurd (Mumble)
 
 See [Build](https://github.com/lexesv/staticmurmurd/blob/master/BUILD.MD)
