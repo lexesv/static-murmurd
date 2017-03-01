@@ -50,10 +50,11 @@ min 20Gb dinamic VDI
 
 `sed -ri "s/__GNUC__\)/\0 \&\& defined(__GLIBC__)/" cpp/src/IceUtilException.cpp`
 
+`sed -ri "s/defined\(__linux\) \&\& \!defined\(__USE_UNIX98\)/\0 \&\& defined(PTHREAD_MUTEX_ERRORCHECK_NP)/" cpp/src/IceUtil/RecMutex.cpp`
 
-In src/IceUtil/RecMutex.cpp & include/IceUtil/Mutex.h add **&& defined(PTHREAD_MUTEX_ERRORCHECK_NP)** 
+`sed -ri "s/defined\(__linux\) \&\& \!defined\(__USE_UNIX98\)/\0 \&\& defined(PTHREAD_MUTEX_ERRORCHECK_NP)/" cpp/include/IceUtil/Mutex.h`
 
-`cd /build/ice && mv test test.off`
+`mv test test.off`
 
 `make -j$CPUN`
 
