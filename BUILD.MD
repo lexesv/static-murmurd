@@ -6,6 +6,21 @@ min 20Gb dinamic VDI
 
 [Download] (https://nl.alpinelinux.org/alpine/v3.5/releases/x86_64/alpine-extended-3.5.1-x86_64.iso)
 
+Edit file /etc/apk/repositories
+
+> \# /media/cdrom/apks
+
+> http://mirror.leaseweb.com/alpine/v3.5/main
+
+> http://mirror.leaseweb.com/alpine/v3.5/community
+
+> http://mirror.leaseweb.com/alpine/edge/main
+
+> http://mirror.leaseweb.com/alpine/edge/community
+
+> http://mirror.leaseweb.com/alpine/edge/testing
+
+`apk update && apk upgrade
 
 **3. QT5**
 
@@ -93,21 +108,11 @@ min 20Gb dinamic VDI
 
 `cd mumble`
 
-Edit file (mc F4) src/SSL.cpp (function **void MumbleSSL::qsslSanityCheck()**) comment lines: 
+`sed -ri "s%qFatal\(\"SSL%//\0%g" src/SSL.cpp`
 
-//	qFatal("SSL: could not dlopen program binary");
+`sed -ri "s%qCritical\(\"Found%//\0%g" src/SSL.cpp`
 
-//	qFatal("SSL: unable to acquire link_map: %s", dlerror());
-
-//	qFatal("SSL: link_map is NULL");
-
-//	qFatal("SSL library query failed: %i libcrypto's and %i libssl's found.", libcrypto.size(), libssl.size());
-
-//	qCritical("Found multiple libssl.so copies in binary: %s", qPrintable(libssl.join(QLatin1String(", "))));
-
-//	qCritical("Found multiple libcrypto.so copies in binary: %s", qPrintable(libcrypto.join(QLatin1String(", "))));
-
-//	ok = false;
+`sed -ri "s%ok = false;%//\0%g" src/SSL.cpp`
 
 `sed -ri "s%opt/Ice-3.3%opt/3.6.3%g" src/murmur/murmur.pro`
 
