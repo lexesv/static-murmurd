@@ -18,4 +18,8 @@ See [Build](https://github.com/lexesv/staticmurmurd/blob/master/BUILD.MD)
 
 - Alpine Linux: https://alpinelinux.org/
 
+- QT: https://www.qt.io/
+
+- Zeroc-Ice: https://zeroc.com/
+
 
