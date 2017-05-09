@@ -1,1 +1,1 @@
-# Built static murmurd
+# Built static murmurd (server) and mumble (client)
